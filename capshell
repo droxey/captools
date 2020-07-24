@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CAPROVER_APP="srv-captain--$1"
+SHELL="/bin/sh"
+
+BOLD="\e[1m"
+DIM="\e[2m"
+RESET="\e[0m"
+RESETDIM="\e[22m"
+GREENBG="$RESETDIM\e[42m\e[30m"
+
+if [[ $1 =~ .*postgres.* ]]; then
+  SHELL="psql --username postgres"
+fi
+
+echo -e "${BOLD}${DIM}Accessing $GREENBG $SHELL $RESET$DIM on $GREENBG $CAPROVER_APP $RESET$DIM:$RESET"
+docker exec -it $(docker ps --filter name=srv-captain--$1 -q) $SHELL

@@ -1,0 +1,11 @@
+
+#!/bin/bash
+
+BOLD="\e[1m"
+DIM="\e[2m"
+RESET="\e[0m"
+GREENBG="$RESETDIM\e[42m\e[30m"
+
+echo -e "${BOLD}${DIM}Restarting $GREENBG CapRover $RESET$DIMservice...$RESET"
+
+docker service update captain-captain --force

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+CAPROVER_APP=$1
+ if [$# -eq 0 ]; then
+    CAPROVER_APP="captain-captain"
+
+BOLD="\e[1m"
+DIM="\e[2m"
+RESET="\e[0m"
+GREENBG="$RESETDIM\e[42m\e[30m"
+
+echo -e "${BOLD}${DIM}Logs for $GREENBG $CAPROVER_APP $RESET$DIM:$RESET"
+
+docker service logs $CAPROVER_APP --since 60m --follow

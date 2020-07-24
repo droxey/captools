@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SELECTED="srv-captain--$1"
+BOLDGREEN="\e[1m\e[92m"
+RESET="\e[0m"
+
+echo -e "${BOLDGREEN}RUNNING CONTAINERS:${RESET}"
+echo -e "\e[1m$(docker ps --format "table  {{.ID}} ({{.Image}})\t{{.Ports}}\t{{.Size}}" --filter name=srv-captain--)"
+echo "---"
+echo -e "Run ${BOLDGREEN}capshell app-name${RESET} to access the shell."
+echo "---"

@@ -1,0 +1,14 @@
+
+#!/bin/bash
+
+BOLD="\e[1m"
+DIM="\e[2m"
+RESET="\e[0m"
+GREENBG="$RESETDIM\e[42m\e[30m"
+
+echo -e "${BOLD}${DIM}Restoring original $GREENBG nginx $RESET$DIMconfig for CapRover...$RESET"
+
+docker service scale captain-captain=0 && \
+docker run -it --rm -v /captain:/captain  caprover/caprover /bin/bash -c "wget https://raw.githubusercontent.com/caprover/caprover/master/dev-scripts/clear-custom-nginx.js ; node clear-custom-nginx.js ;" && \
+docker service scale captain-captain=1 && \
+echo -e "$BOLD$DIMOriginal CapRover config restored. $BOLD$GREENBG nginx $RESET$DIM has been restarted."
