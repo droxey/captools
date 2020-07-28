@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CAPROVER_APP=captain-srv--$1
+CAPROVER_APP=$1
 if [$# -eq 0 ]; then
     CAPROVER_APP="captain-captain"
 fi
