@@ -1,1 +1,20 @@
 #!/bin/bash
+
+BOLD="\e[1m"
+DIM="\e[2m"
+RESET="\e[0m"
+SCRIPTS=$(find . ! -name . -prune -type f -name '[cap]*')
+
+function strip {
+    local STRING=${1#$"$2"}
+    echo ${STRING%$"$2"}
+}
+
+for CAPROVER_SCRIPT in $SCRIPTS
+do
+    SCRIPT_NAME=$(strip "$CAPROVER_SCRIPT" "./")
+    yes | cp -rf $SCRIPT_NAME /usr/local/bin/$SCRIPT_NAME
+    chmod +x /usr/local/bin/$SCRIPT_NAME
+done
+
+echo -e "${BOLD}${DIM}Scripts installed in /usr/local/bin!${RESET}"
